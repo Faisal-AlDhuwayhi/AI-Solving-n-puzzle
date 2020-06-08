@@ -1,15 +1,15 @@
 # Artificial Intelligence - Solving N-puzzle Problem
 
-# 1 Objective
+## 1 Objective
 The goal of this project is to build an artificial intelligent that can solve n-puzzle problem using informed and uninformed search methods.
 
-# 2 Requirements
+## 2 Requirements
 1. Implement the n-puzzle problem.
 1. Your tool should accept n as input, along with the initial state. Initial state could be randomly generated as well.
 1. Your tool allows user to select search strategy as input (drop down list)
 1. Solve the problem using the selected search strategy
 
-# 3 The Problem
+## 3 The Problem
 Given a n×n board with n^2 tiles (every tile has one number from 1 to n^2-1) and one
 empty space. The objective is to place the numbers on tiles to match final configuration
 using the empty space. You can slide four adjacent tiles (left, right, down and up) into
@@ -21,7 +21,7 @@ through moving the empty square, which will have the value of 0.
 
 You can find more details about this project in [this file](/Report/Report.pdf).
 
-# 4 Output
+## 4 Output
 You should produce these **Outputs** at the end of the project:
 1. Total number of steps to reach solution (path cost).
 1. Total number of processed nodes until the strategy finds solution.
@@ -30,7 +30,7 @@ You should produce these **Outputs** at the end of the project:
 
 
 
-# 5 Using the code of the project
+## 5 Using the code of the project
 The code of the project contains third-party library of python like `numpy`. so you need to install it in your machine and then start working.
 
 last thing to mention is that, it's better to include [venv](/venv) (vitual enviroment) folder when installing the project. because it has all the settings of the project you need.
