@@ -177,7 +177,7 @@ class Node:
 
 """"-----------------------------------------------------------------------------------------------------"""
 
-""" Goal tree is the main class of the software, 
+""" Goal tree is the main class of the software,
 having the search methods and the closed list, in addition to other things """
 
 
