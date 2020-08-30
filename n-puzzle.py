@@ -20,7 +20,7 @@
     - The program when it's being under use, it's divided into three main methods/functions:
         1- def random_state(n), which take the size of the problem and return a random state that
            is granted to be solvable.
-        2- def solvable(state), which take a tow dimensional array that represent the state and return true if the state
+        2- def solvable(state), which take a two dimensional array that represent the state and return true if the state
            is solvable and false otherwise.
         3- def solve(self, strategy): which take the name of the wanted search method and solve the problem by using it,
            returning a tuple (sol, g, processed_nodes, max_stored_nodes, flag, self.root.state) where:
@@ -39,6 +39,7 @@ from datetime import datetime
 from collections import deque
 import random
 import numpy as np
+# import copy
 
 """"-----------------------------------------------------------------------------------------------------"""
 # heap functions:
@@ -115,7 +116,7 @@ class Node:
         self.children = children
         self.g = g
 
-    """"return return if self.state = state, false otherwise. """
+    """"return if self.state = state, false otherwise."""
     def equal(self, state):
         for i in range(len(state)):
             for j in range(len(state)):
@@ -158,8 +159,11 @@ class Node:
     """move the blank space in the given direction and if the position value are out
                 of limits then return None """
     def move(self, state, x1, y1, x2, y2):
-        if (x2 >= 0 and x2 < len(self.state)) and (y2 >= 0 and y2 < len(self.state)):
-            temp_state = state.copy()
+        if (0 <= x2 < len(self.state)) and (0 <= y2 < len(self.state)):
+            # You can also use { copy.deepcopy(state) } by importing copy library, but it's a little bit slower than
+            # the explicit one down there.
+            temp_state = self.copy(state)
+
             temp = temp_state[x2][y2]
             temp_state[x2][y2] = temp_state[x1][y1]
             temp_state[x1][y1] = temp
@@ -174,10 +178,20 @@ class Node:
                 if state[i][j] == x:
                     return i, j
 
+    """ Copy function to create a similar matrix of the given node"""
+    def copy(self, state):
+        temp = []
+        for row in state:
+            temp_row = []
+            for element in row:
+                temp_row.append(element)
+            temp.append(temp_row)
+        return temp
+
 
 """"-----------------------------------------------------------------------------------------------------"""
 
-""" Goal tree is the main class of the software,
+""" Goal tree is the main class of the software, 
 having the search methods and the closed list, in addition to other things """
 
 
@@ -506,12 +520,12 @@ class GoalTree:
 
     @staticmethod
     def solution(node):
-        sol = [node.action]
-        p = node
-        while p.parent is not None:
-            p = p.parent
-            sol.append(p.action)
-        sol.pop()
+        sol = []
+        current = node
+        while current.parent is not None:
+            sol.append(current.action)
+            current = current.parent
+
         sol.reverse()
         return sol
 
@@ -577,18 +591,19 @@ def row_of_blank_from_bottom(state):
 """ ------- Just for testing --------"""
 
 """ Random state """
-dim = int(input("Enter dimension -> "))
-initial = random_state(dim)
-print("The initial random state is:")
-for row in initial:
-    print(row)
+# dim = int(input("Enter dimension -> "))
+# initial = random_state(dim)
+# print("The initial random state is:")
+# for row in initial:
+#     print(row)
 
 
 """ Custom state """
-# initial = [[1, 7, 2],
-# [0, 5, 3],
-# [4, 8, 6]]
-#
+initial = [[1, 2, 3, 4],
+[5, 6, 7, 8],
+[9, 10, 11, 0],
+[12, 13, 15, 14]]
+
 
 """ Choosing an algorithm """
 algorithm = input("Choose an algorithm [Breadth first, Depth first, Uniform cost, Depth limited, Iterative deepening, \
