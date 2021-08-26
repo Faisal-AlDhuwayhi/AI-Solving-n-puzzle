@@ -1,4 +1,4 @@
-# Artificial Intelligence - Solving N-puzzle Problem
+# Artificial Intelligence | Solving n-puzzle Problem
 
 ## 1 Objective
 **The goal of the project** is to build an artificial intelligent that can solve n-puzzle problem using informed and uninformed search methods.
@@ -33,4 +33,4 @@ The code of the project contains third-party library of python like `numpy`. so 
 
 last thing to mention is that, it's better to include [venv](/venv) (virtual environment) folder when installing the project. because it has all the settings of the project you need.
 
-You can find the plain code at [n-puzzle file](n-puzzle.py).
+You can find the source code at [n-puzzle file](n-puzzle.py).
